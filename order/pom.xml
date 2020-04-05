@@ -89,7 +89,7 @@
         <executions>
           <execution>
             <id>sonar</id>
-            <phase>validate</phase>
+            <phase>verify</phase>
             <goals>
               <goal>sonar</goal>
             </goals>

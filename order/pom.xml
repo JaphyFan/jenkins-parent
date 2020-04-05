@@ -8,6 +8,7 @@
     <groupId>com.japhy</groupId>
     <artifactId>jenkins-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>order</artifactId>
@@ -49,9 +50,17 @@
         <configuration>
           <images>
             <image>
+              <name>${project.artifactId}</name>
+              <build>
+                <!-- filter>@</filter-->
+                <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+                <assembly>
+                  <descriptorRef>artifact</descriptorRef>
+                </assembly>
+              </build>
               <run>
                 <ports>
-                  <port>8080:8080</port>
+                  <port>9000:9000</port>
                 </ports>
               </run>
             </image>
@@ -76,4 +85,24 @@
       </plugin>
     </plugins>
   </build>
+  <repositories>
+    <repository>
+      <id>aliyun-repos</id>
+      <url>https://maven.aliyun.com/repository/public/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>aliyun-plugin</id>
+      <url>https://maven.aliyun.com/repository/public/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
 </project>

@@ -148,24 +148,6 @@
     <finalName>${project.artifactId}-${project.version}</finalName>
     <pluginManagement>
       <plugins>
-
-        <!--          springboot plugin           s-->
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${spring.boot.version}</version>
-          <configuration>
-            <finalName>${project.build.finalName}</finalName>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>repackage</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
         <!--          maven docker plugin         -->
         <plugin>
           <groupId>io.fabric8</groupId>
@@ -175,23 +157,11 @@
           <configuration>
             <showLogs>true</showLogs>
             <verbose>true</verbose>
-            <images>
-              <image>
-                <name>${project.artifactId}</name>
-                <build>
-                  <!-- filter>@</filter-->
-                  <dockerFileDir>${project.basedir}/src/docker</dockerFileDir>
-                  <assembly>
-                    <descriptorRef>artifact</descriptorRef>
-                  </assembly>
-                </build>
-              </image>
-            </images>
           </configuration>
           <executions>
             <execution>
               <id>stop</id>
-              <phase>clean</phase>
+              <phase>pre-clean</phase>
               <goals>
                 <goal>stop</goal>
               </goals>
@@ -282,7 +252,6 @@
             <xrefLocation>target/xref</xrefLocation>
           </configuration>
         </plugin>
-
         <!-- performance tests -->
         <plugin>
           <groupId>com.lazerycode.jmeter</groupId>
@@ -318,6 +287,23 @@
     </pluginManagement>
 
     <plugins>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring.boot.version}</version>
+        <configuration>
+          <finalName>${project.build.finalName}</finalName>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
@@ -463,7 +449,7 @@
     <profile>
       <id>checkstyle</id>
       <activation>
-        <jdk>[1.8,)</jdk>
+<!--        <jdk>[1.8,)</jdk>-->
       </activation>
       <build>
         <plugins>

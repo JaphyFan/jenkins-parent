@@ -431,7 +431,6 @@
                 <id>attach-javadocs</id>
                 <reports>
                   <report>aggregate</report>
-                  <report>aggregate-jar</report>
                 </reports>
               </reportSet>
             </reportSets>

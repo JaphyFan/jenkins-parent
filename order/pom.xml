@@ -8,7 +8,6 @@
     <groupId>com.japhy</groupId>
     <artifactId>jenkins-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>order</artifactId>
@@ -68,16 +67,10 @@
         </configuration>
         <executions>
           <execution>
-            <id>build</id>
+            <id>start-container</id>
             <phase>post-integration-test</phase>
             <goals>
               <goal>build</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>start</id>
-            <phase>post-integration-test</phase>
-            <goals>
               <goal>start</goal>
             </goals>
           </execution>

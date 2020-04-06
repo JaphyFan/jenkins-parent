@@ -58,6 +58,9 @@
     <jmockit.version>1.49</jmockit.version>
     <checkstyle.config.location>codestyle/checkstyle.xml</checkstyle.config.location>
     <maven_checkstyle_version>3.1.1</maven_checkstyle_version>
+    <argLine>-Xms256m -Xmx512m -Dfile.encoding=UTF-8
+      -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
+    <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
   </properties>
 
   <dependencyManagement>
@@ -160,16 +163,10 @@
           </configuration>
           <executions>
             <execution>
-              <id>stop</id>
-              <phase>pre-clean</phase>
+              <id>clean-docker</id>
+              <phase>clean</phase>
               <goals>
                 <goal>stop</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>remove</id>
-              <phase>post-clean</phase>
-              <goals>
                 <goal>remove</goal>
               </goals>
             </execution>
@@ -244,12 +241,17 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-report-plugin</artifactId>
+          <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M4</version>
           <configuration>
-            <xrefLocation>target/xref</xrefLocation>
+            <useSystemClassLoader>true</useSystemClassLoader>
+            <reportsDirectory>${project.basedir}/../target/surefire-reports
+            </reportsDirectory>
+            <!--suppress UnresolvedMavenProperty -->
+            <argLine>${argLine} ${surefireArgLine}</argLine>
           </configuration>
         </plugin>
         <!-- performance tests -->
@@ -351,10 +353,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <configuration>
-              <skip>false</skip>
-            </configuration>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -369,9 +367,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
-            <configuration>
-              <skipSource>false</skipSource>
-            </configuration>
             <executions>
               <execution>
                 <id>attach-sources</id>
@@ -393,6 +388,7 @@
                 <id>attach-javadocs</id>
                 <goals>
                   <goal>jar</goal>
+                  <goal>aggregate</goal>
                 </goals>
               </execution>
             </executions>
@@ -408,7 +404,6 @@
         <jdk>[1.8,)</jdk>
       </activation>
       <dependencies>
-        <!-- JaCoCo runtime must be in classpath for offline mode -->
         <dependency>
           <groupId>org.jacoco</groupId>
           <artifactId>org.jacoco.agent</artifactId>
@@ -426,19 +421,25 @@
             <version>0.8.5</version>
             <executions>
               <execution>
-                <id>instrument</id>
-                <phase>process-classes</phase>
+                <id>pre-test</id>
                 <goals>
-                  <goal>instrument</goal>
+                  <goal>prepare-agent</goal>
                 </goals>
+                <configuration>
+                  <append>true</append>
+                  <destFile>${sonar.jacoco.reportPaths}</destFile>
+                  <propertyName>surefireArgLine</propertyName>
+                </configuration>
               </execution>
               <execution>
-                <id>restore</id>
+                <id>post-test</id>
                 <phase>test</phase>
                 <goals>
-                  <goal>restore-instrumented-classes</goal>
                   <goal>report</goal>
                 </goals>
+                <configuration>
+                  <dataFile>${sonar.jacoco.reportPaths}</dataFile>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -473,7 +474,6 @@
                   <headerLocation>LICENSE</headerLocation>
                   <encoding>UTF-8</encoding>
                   <consoleOutput>true</consoleOutput>
-                  <failOnViolation>true</failOnViolation>
                 </configuration>
                 <goals>
                   <goal>check</goal>

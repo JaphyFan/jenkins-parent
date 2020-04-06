@@ -418,26 +418,26 @@
               </execution>
             </executions>
           </plugin>
-
+        </plugins>
+      </build>
+      <reporting>
+        <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.2.0</version>
-            <configuration>
-              <reportOutputDirectory>${project.reporting.outputDirectory}</reportOutputDirectory>
-            </configuration>
-            <executions>
-              <execution>
+            <reportSets>
+              <reportSet>
                 <id>attach-javadocs</id>
-                <goals>
-                  <goal>aggregate</goal>
-                  <goal>aggregate-jar</goal>
-                </goals>
-              </execution>
-            </executions>
+                <reports>
+                  <report>aggregate</report>
+                  <report>aggregate-jar</report>
+                </reports>
+              </reportSet>
+            </reportSets>
           </plugin>
         </plugins>
-      </build>
+      </reporting>
     </profile>
 
     <!-- Enable JaCoCo Test -->

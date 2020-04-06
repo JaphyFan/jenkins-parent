@@ -415,7 +415,6 @@
                 <goals>
                   <goal>jar</goal>
                   <goal>aggregate</goal>
-                  <goal>javadoc</goal>
                 </goals>
               </execution>
             </executions>

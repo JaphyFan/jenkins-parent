@@ -60,7 +60,7 @@
     <maven_checkstyle_version>3.1.1</maven_checkstyle_version>
     <argLine>-Xms256m -Xmx512m -Dfile.encoding=UTF-8
       -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
-    <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+    <sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
   </properties>
 
   <dependencyManagement>
@@ -341,6 +341,11 @@
           </reportSet>
         </reportSets>
       </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.0.0</version>
+      </plugin>
     </plugins>
   </reporting>
 
@@ -374,6 +379,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -388,6 +394,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
+            <version>3.2.1</version>
             <executions>
               <execution>
                 <id>attach-sources</id>
@@ -401,9 +408,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-              <skip>false</skip>
-            </configuration>
+            <version>3.2.0</version>
             <executions>
               <execution>
                 <id>attach-javadocs</id>

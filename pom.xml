@@ -61,6 +61,7 @@
     <argLine>-Xms256m -Xmx512m -Dfile.encoding=UTF-8
       -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
     <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
+    <surefireArgLine/>
   </properties>
 
   <dependencyManagement>
@@ -218,7 +219,7 @@
             <reportsDirectory>${project.basedir}/../target/surefire-reports
             </reportsDirectory>
             <!--suppress UnresolvedMavenProperty -->
-            <argLine>${argLine} ${surefireArgLine}</argLine>
+            <argLine>${argLine} @{surefireArgLine}</argLine>
           </configuration>
         </plugin>
         <!-- performance tests -->
@@ -316,7 +317,7 @@
       <id>jacoco</id>
       <activation>
         <property>
-          <name>environment</name>
+          <name>active</name>
           <value>test</value>
         </property>
       </activation>
@@ -368,7 +369,7 @@
       <id>quality-check</id>
       <activation>
         <property>
-          <name>environment</name>
+          <name>active</name>
           <value>test</value>
         </property>
       </activation>

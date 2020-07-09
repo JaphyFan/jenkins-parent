@@ -1,9 +1,9 @@
 FROM java:8-jdk-alpine
 
-COPY maven/${project.artifactId}-${project.version}.jar /usr/app/app.jar
+COPY maven/${project.artifactId}-${project.version}.jar /usr/app/
 
-ENV SPRING_ACTIVE_PROFIES DOCKER
+ENV SPRING_PROFIES_ACTIVE docker
 
 WORKDIR /usr/app
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "-Djava.security.egd=file:/dev/urandom", "${project.artifactId}-${project.version}.jar"]

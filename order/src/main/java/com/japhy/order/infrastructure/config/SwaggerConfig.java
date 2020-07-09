@@ -1,4 +1,4 @@
-package com.japhy.order.infracture.config;
+package com.japhy.order.infrastructure.config;
 
 import com.google.common.collect.Sets;
 import org.springframework.context.annotation.Bean;

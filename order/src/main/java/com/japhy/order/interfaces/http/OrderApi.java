@@ -1,6 +1,6 @@
-package com.japhy.order.api.web;
+package com.japhy.order.interfaces.http;
 
-import com.japhy.order.domain.order.model.Order;
+import com.japhy.order.domain.order.model.entity.Order;
 import com.japhy.order.domain.order.service.OrderService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

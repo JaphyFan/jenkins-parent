@@ -1,0 +1,13 @@
+@startuml
+title Automatic Deployment
+actor User
+participant Git order 10
+participant SonarQube order 50
+participant Checkstyle order 40
+participant Maven order 30
+participant Jenkins order 20
+
+User -> Git: developer push \r code to git repository
+Git -> Jenkins: jenkins pull code \rto jenkins local git
+
+@enduml

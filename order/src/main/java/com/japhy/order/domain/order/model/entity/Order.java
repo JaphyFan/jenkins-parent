@@ -1,4 +1,4 @@
-package com.japhy.order.domain.order.model;
+package com.japhy.order.domain.order.model.entity;
 
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiModel;

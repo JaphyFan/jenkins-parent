@@ -1,6 +1,6 @@
 package com.japhy.order.domain.order.service.impl;
 
-import com.japhy.order.domain.order.model.Order;
+import com.japhy.order.domain.order.model.entity.Order;
 import com.japhy.order.domain.order.service.OrderService;
 import java.util.List;
 import java.util.Optional;

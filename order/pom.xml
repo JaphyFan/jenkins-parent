@@ -7,13 +7,17 @@
   <parent>
     <groupId>com.japhy</groupId>
     <artifactId>jenkins-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
   </parent>
 
   <artifactId>order</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-${branch.tag}</version>
   <name>order</name>
   <description>Demo project for Spring Boot</description>
+
+  <properties>
+  <branch.tag>RELEASE</branch.tag>
+  </properties>
 
   <dependencies>
     <dependency>

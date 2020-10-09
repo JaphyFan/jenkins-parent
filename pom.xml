@@ -6,7 +6,7 @@
 
   <groupId>com.japhy</groupId>
   <artifactId>jenkins-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-${branch.tag}</version>
   <name>jenkins-parent</name>
   <packaging>pom</packaging>
 
@@ -41,14 +41,14 @@
 
   <!--  配置依赖的版本-->
   <properties>
+    <branch.tag>RELEASE</branch.tag>
     <java.version>1.8</java.version>
-    <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+    <spring-cloud.verggkkljoooiijjjjjjjjjsion>Hoxton.RELEASE</spring-cloud.verggkkljoooiijjjjjjjjjsion>
     <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
     <swagger.version>2.9.2</swagger.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.install.skip>true
-    </maven.install.skip><!-- aggregator POMs not intended to be installed -->
+    <maven.install.skip>true</maven.install.skip><!-- aggregator POMs not intended to be installed -->
     <maven.deploy.skip>true</maven.deploy.skip><!-- aggregator POMs not intended to be deployed -->
     <docker.plugin.version>1.0.0</docker.plugin.version>
     <guava.version>28.2-jre</guava.version>
@@ -70,6 +70,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
         <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Hoxton.SR7</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

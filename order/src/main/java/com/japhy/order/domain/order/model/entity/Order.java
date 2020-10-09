@@ -14,7 +14,7 @@ import lombok.ToString;
  * @author Japhy
  * @since 2020/4/5 08:37
  */
-@ApiModel
+@ApiModel("订单信息")
 @ToString
 @Builder
 @Getter

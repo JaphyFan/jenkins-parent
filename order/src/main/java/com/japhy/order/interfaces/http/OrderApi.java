@@ -2,10 +2,12 @@ package com.japhy.order.interfaces.http;
 
 import com.japhy.order.domain.order.model.entity.Order;
 import com.japhy.order.domain.order.service.OrderService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/v1/order")
+@RequiredArgsConstructor
+@Api("订单接口")
 public class OrderApi {
 
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
 
     @GetMapping("/id/{orderId}")
     @ApiOperation(value = "order service", notes = "find order by id")

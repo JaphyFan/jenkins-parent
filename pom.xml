@@ -43,7 +43,7 @@
   <properties>
     <branch.tag>RELEASE</branch.tag>
     <java.version>1.8</java.version>
-    <spring-cloud.verggkkljoooiijjjjjjjjjsion>Hoxton.RELEASE</spring-cloud.verggkkljoooiijjjjjjjjjsion>
+    <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
     <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
     <swagger.version>2.9.2</swagger.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

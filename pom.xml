@@ -59,7 +59,7 @@
     <jmockit.version>1.49</jmockit.version>
     <checkstyle.config.location>codestyle/checkstyle.xml</checkstyle.config.location>
     <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
-    <argLine>-Xms256m -Xmx512m -Dfile.encoding=UTF-8
+    <argLine>-Xms128m -Xmx256m -Dfile.encoding=UTF-8
       -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=128m</argLine>
     <sonar.jacoco.reportPaths>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPaths>
     <surefireArgLine/>
@@ -74,13 +74,13 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Hoxton.SR7</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+      <!--<dependency>-->
+      <!--  <groupId>org.springframework.cloud</groupId>-->
+      <!--  <artifactId>spring-cloud-dependencies</artifactId>-->
+      <!--  <version>Hoxton.SR7</version>-->
+      <!--  <type>pom</type>-->
+      <!--  <scope>import</scope>-->
+      <!--</dependency>-->
     </dependencies>
   </dependencyManagement>
 

@@ -6,7 +6,7 @@
 
   <groupId>com.japhy</groupId>
   <artifactId>jenkins-parent</artifactId>
-  <version>1.0.0-RELEASE</version>
+  <version>${revision}${changelist}</version>
   <name>jenkins-parent</name>
   <packaging>pom</packaging>
 
@@ -41,6 +41,8 @@
 
   <!--  配置依赖的版本-->
   <properties>
+    <revision>1.0.0</revision>
+    <changelist>-RELEASE</changelist>
     <java.version>1.8</java.version>
     <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
     <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
@@ -263,6 +265,31 @@
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>1.1.0</version>
+        <configuration>
+          <updatePomFile>true</updatePomFile>
+          <flattenMode>resolveCiFriendliesOnly</flattenMode>
+        </configuration>
+        <executions>
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>flatten.clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
